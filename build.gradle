@@ -1,0 +1,36 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {  url 'http://dynamodb-local.s3-website-us-west-2.amazonaws.com/release'}
+}
+
+
+dependencies {
+
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('com.amazonaws:aws-java-sdk-dynamodb:1.11.32')
+	compile('org.apache.commons:commons-lang3:3.6')
+	compile 'com.github.derjust:spring-data-dynamodb:4.4.1'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
